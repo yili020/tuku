@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小白学 - 互动式编程学习平台</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>小白学</h1>
+                <p class="tagline">让编程学习更简单</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="creator.html" class="nav-link">创作者中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 欢迎区域 -->
+            <section class="welcome-section">
+                <h2>欢迎来到小白学</h2>
+                <p>通过互动式的可视化学习，让编程不再困难</p>
+            </section>
+
+            <!-- 示例列表区域 -->
+            <section class="examples-section">
+                <div class="section-header">
+                    <h3>学习示例</h3>
+                    <p class="section-desc">点击任意示例开始学习</p>
+                </div>
+                
+                <!-- 示例卡片容器 -->
+                <div id="examplesList" class="examples-grid">
+                    <!-- 示例卡片将通过JavaScript动态生成 -->
+                    <!-- 示例卡片模板：
+                    <div class="example-card" data-example-id="ex_001">
+                        <div class="example-image">
+                            <img src="images/examples/preview.png" alt="示例预览">
+                        </div>
+                        <div class="example-content">
+                            <h4 class="example-title">HTML基础</h4>
+                            <p class="example-desc">学习HTML基本标签和结构</p>
+                            <div class="example-meta">
+                                <span class="difficulty">初级</span>
+                                <span class="time">30分钟</span>
+                            </div>
+                        </div>
+                        <button class="learn-btn">开始学习</button>
+                    </div>
+                    -->
+                </div>
+
+                <!-- 暂无示例提示 -->
+                <div id="noExamples" class="no-examples" style="display: none;">
+                    <p>暂无已发布的学习示例</p>
+                    <p class="hint">前往<a href="creator.html">创作者中心</a>创建你的第一个示例吧！</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小白学 - 互动式编程学习平台</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

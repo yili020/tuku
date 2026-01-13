@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习页面 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/learning.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav-left">
+                <a href="index.html" class="nav-link">← 返回首页</a>
+            </nav>
+            <h2 id="exampleTitle" class="header-title">区块联动演示</h2>
+            <div class="nav-right">
+                <div class="progress-info">
+                    <span id="currentStepInfo">步骤 2/2</span>
+                </div>
+                <button id="prevConcept" class="progress-btn">
+                    <span>← 上一个概念</span>
+                </button>
+                <button id="nextConcept" class="progress-btn">
+                    <span>下一个概念 →</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 学习内容描述 -->
+    <section class="learning-header">
+        <div class="container">
+            <p id="exampleDesc" class="example-desc">悬停高亮联动</p>
+        </div>
+    </section>
+    
+    <!-- 主学习区域：三栏布局 -->
+    <main class="learning-content">
+        <div class="container-fluid">
+            <div class="learning-layout">
+                <!-- 左侧：分类导航 -->
+                <aside class="sidebar-area">
+                    <div class="category-section">
+                        <h3 class="category-title">学习分类</h3>
+                        <nav class="category-nav">
+                            <div class="category-item active">
+                                <h4>● 学习步骤</h4>
+                                <!-- 大进度条集成到分类内部 -->
+                                <div id="bigProgressBar" class="big-progress-bar">
+                                    <!-- 大步骤将通过JavaScript动态生成 -->
+                                </div>
+                            </div>
+                            <!-- 未来可扩展更多分类 -->
+                            <!--
+                            <div class="category-item">
+                                <h4>○ 动态交互</h4>
+                            </div>
+                            <div class="category-item">
+                                <h4>○ 点击交互</h4>
+                            </div>
+                            -->
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- 中间：效果展示区 -->
+                <div class="middle-area">
+                    <div class="area-header">
+                        <h3>效果展示区</h3>
+                    </div>
+                    <div id="displayArea" class="display-area">
+                        <!-- 效果展示区块将通过JavaScript动态生成 -->
+                        <div class="loading-placeholder">
+                            <p>正在加载效果展示...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：代码解释区 -->
+                <div class="right-area">
+                    <div class="area-header">
+                        <h3>代码解释区</h3>
+                    </div>
+                    <div id="codeArea" class="code-area">
+                        <!-- 代码和解释区块将通过JavaScript动态生成 -->
+                        <div class="loading-placeholder">
+                            <p>正在加载代码解释...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小白学 - 互动式编程学习平台</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+    <script src="js/json-structure.js"></script>
+    <script src="js/block-renderer.js"></script>
+    <script src="js/block-interaction.js"></script>
+    <script src="js/learning.js"></script>
+</body>
+</html>

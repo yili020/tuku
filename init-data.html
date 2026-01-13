@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据初始化 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        .init-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .status.loading {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #357abd;
+        }
+        .btn.secondary {
+            background: #6c757d;
+        }
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="init-container">
+        <h1>📦 数据初始化工具</h1>
+        <p>此页面用于初始化学习数据到浏览器存储</p>
+        
+        <div id="status" class="status loading">
+            正在检查数据状态...
+        </div>
+        
+        <div id="actions" style="margin-top: 20px; display: none;">
+            <button class="btn" onclick="loadData()">🔄 加载基础示例数据</button>
+            <button class="btn" onclick="loadCodeLineDemo()" style="background: #8e44ad;">🔗 加载代码行联动演示</button>
+            <button class="btn secondary" onclick="viewStorage()">👁️ 查看存储数据</button>
+            <button class="btn" onclick="goToLearning()">📚 进入学习页面</button>
+        </div>
+        
+        <div id="storage-info" style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 8px; display: none;">
+            <h3>存储信息：</h3>
+            <pre id="storage-content" style="overflow: auto; max-height: 300px;"></pre>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        const statusEl = document.getElementById('status');
+        const actionsEl = document.getElementById('actions');
+        const storageInfoEl = document.getElementById('storage-info');
+        const storageContentEl = document.getElementById('storage-content');
+
+        // 检查数据状态
+        function checkDataStatus() {
+            const examples = CommonUtils.getPublishedExamples();
+            
+            if (examples && examples.length > 0) {
+                statusEl.className = 'status success';
+                statusEl.innerHTML = `✅ 数据已存在！找到 ${examples.length} 个示例<br>` +
+                    examples.map(ex => `- ${ex.title} (ID: ${ex.exampleId})`).join('<br>');
+            } else {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ 未找到数据，请点击下方按钮加载';
+            }
+            
+            actionsEl.style.display = 'block';
+        }
+
+        // 加载示例数据
+        async function loadData() {
+            statusEl.className = 'status loading';
+            statusEl.textContent = '正在加载示例数据...';
+            
+            try {
+                await CommonUtils.initializeExampleFromFile('data/examples/html-basic.json', true);
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ 数据加载成功！';
+                setTimeout(checkDataStatus, 500);
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ 加载失败: ' + error.message;
+            }
+        }
+        
+        // 加载代码行联动演示数据
+        async function loadCodeLineDemo() {
+            statusEl.className = 'status loading';
+            statusEl.textContent = '正在加载代码行联动演示数据...';
+            
+            try {
+                await CommonUtils.initializeExampleFromFile('data/examples/code-line-demo.json', true);
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ 代码行联动演示数据加载成功！';
+                setTimeout(checkDataStatus, 500);
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ 加载失败: ' + error.message;
+            }
+        }
+
+        // 查看存储数据
+        function viewStorage() {
+            const examples = CommonUtils.getPublishedExamples();
+            if (examples && examples.length > 0) {
+                const data = examples.map(ex => {
+                    const fullData = CommonUtils.getExampleData(ex.exampleId);
+                    return {
+                        id: ex.exampleId,
+                        title: ex.title,
+                        bigSteps: fullData?.bigSteps?.length || 0,
+                        totalSmallSteps: fullData?.bigSteps?.reduce((sum, big) => sum + (big.smallSteps?.length || 0), 0) || 0
+                    };
+                });
+                storageContentEl.textContent = JSON.stringify(data, null, 2);
+                storageInfoEl.style.display = 'block';
+            } else {
+                alert('没有找到存储的数据');
+            }
+        }
+
+        // 进入学习页面
+        function goToLearning() {
+            const examples = CommonUtils.getPublishedExamples();
+            if (examples && examples.length > 0) {
+                const firstExample = examples[0];
+                window.location.href = `learning.html?exampleId=${firstExample.exampleId}`;
+            } else {
+                alert('请先加载示例数据！');
+            }
+        }
+
+        // 页面加载时检查状态
+        window.addEventListener('DOMContentLoaded', checkDataStatus);
+    </script>
+</body>
+</html>

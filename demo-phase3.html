@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>区块联动系统演示 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/learning.css">
+    <style>
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .demo-header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .demo-header p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .demo-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+        }
+        .demo-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .demo-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .demo-block {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .demo-block:hover {
+            transform: scale(1.05);
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .btn-demo {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .quick-links {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 60px 0;
+        }
+        .quick-links h2 {
+            margin-bottom: 20px;
+        }
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .link-card {
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .link-card:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>小白学</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="learning.html?exampleId=ex_html_basic_001" class="nav-link">学习页面</a>
+                <a href="test-phase3.html" class="nav-link">测试页面</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="demo-header">
+        <div class="container">
+            <h1>🎨 区块联动系统</h1>
+            <p>第三阶段成果展示 - 让学习更加互动有趣</p>
+        </div>
+    </div>
+
+    <main class="container" style="max-width: 1200px;">
+        <!-- 功能特性 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>智能联动</h3>
+                <p>区块间自动关联，点击或悬停即可高亮相关内容，让学习路径更加清晰</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>丰富动画</h3>
+                <p>11种预设动画效果，让页面交互生动有趣，提升学习体验</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>精准定位</h3>
+                <p>一键聚焦重要内容，自动滚动并高亮，快速找到学习重点</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🖱️</div>
+                <h3>灵活拖拽</h3>
+                <p>支持区块拖拽调整，个性化布局，创造专属学习空间</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👁️</div>
+                <h3>显隐控制</h3>
+                <p>智能显示隐藏，渐进式学习，降低认知负担</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>高性能</h3>
+                <p>优化的事件处理，流畅的动画效果，极致的用户体验</p>
+            </div>
+        </div>
+
+        <!-- 互动演示 -->
+        <div class="demo-section">
+            <h2>🎮 互动演示</h2>
+            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
+                点击下方区块，体验区块联动效果。悬停查看提示，点击固定高亮。
+            </p>
+
+            <div class="demo-blocks" id="demoBlocks">
+                <div class="demo-block block" 
+                     data-block-id="demo_1" 
+                     data-block-type="demo"
+                     data-associations="demo_4,demo_7">
+                    <h3>区块 1</h3>
+                    <p>关联 4, 7</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_2" 
+                     data-block-type="demo"
+                     data-associations="demo_5,demo_8">
+                    <h3>区块 2</h3>
+                    <p>关联 5, 8</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_3" 
+                     data-block-type="demo"
+                     data-associations="demo_6,demo_9">
+                    <h3>区块 3</h3>
+                    <p>关联 6, 9</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_4" 
+                     data-block-type="demo"
+                     data-associations="demo_1,demo_7">
+                    <h3>区块 4</h3>
+                    <p>关联 1, 7</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_5" 
+                     data-block-type="demo"
+                     data-associations="demo_2,demo_8">
+                    <h3>区块 5</h3>
+                    <p>关联 2, 8</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_6" 
+                     data-block-type="demo"
+                     data-associations="demo_3,demo_9">
+                    <h3>区块 6</h3>
+                    <p>关联 3, 9</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_7" 
+                     data-block-type="demo"
+                     data-associations="demo_1,demo_4">
+                    <h3>区块 7</h3>
+                    <p>关联 1, 4</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_8" 
+                     data-block-type="demo"
+                     data-associations="demo_2,demo_5">
+                    <h3>区块 8</h3>
+                    <p>关联 2, 5</p>
+                </div>
+                <div class="demo-block block" 
+                     data-block-id="demo_9" 
+                     data-block-type="demo"
+                     data-associations="demo_3,demo_6">
+                    <h3>区块 9</h3>
+                    <p>关联 3, 6</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn-primary btn-demo" onclick="demoAnimation('shake')">🔔 抖动</button>
+                <button class="btn-primary btn-demo" onclick="demoAnimation('pulse')">💓 脉冲</button>
+                <button class="btn-primary btn-demo" onclick="demoAnimation('blink')">✨ 闪烁</button>
+                <button class="btn-success btn-demo" onclick="demoFocus()">🎯 聚焦中心</button>
+                <button class="btn-secondary btn-demo" onclick="demoClear()">🧹 清除高亮</button>
+            </div>
+        </div>
+
+        <!-- 快速链接 -->
+        <div class="quick-links">
+            <h2>📚 快速访问</h2>
+            <div class="link-grid">
+                <a href="test-phase3.html" class="link-card">
+                    <h4>🧪 完整测试页面</h4>
+                    <p>体验所有联动功能</p>
+                </a>
+                <a href="learning.html?exampleId=ex_interaction_demo_001" class="link-card">
+                    <h4>🎓 交互演示示例</h4>
+                    <p>在学习页面中体验联动</p>
+                </a>
+                <a href="learning.html?exampleId=ex_html_basic_001" class="link-card">
+                    <h4>📖 HTML基础教程</h4>
+                    <p>实际教学场景演示</p>
+                </a>
+                <a href="QUICK-START-PHASE3.md" class="link-card" target="_blank">
+                    <h4>📝 快速入门指南</h4>
+                    <p>学习如何使用联动系统</p>
+                </a>
+                <a href="PHASE3-SUMMARY.md" class="link-card" target="_blank">
+                    <h4>📊 完成总结文档</h4>
+                    <p>查看详细功能列表</p>
+                </a>
+                <a href="README.md" class="link-card" target="_blank">
+                    <h4>📘 项目文档</h4>
+                    <p>了解整体架构设计</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- 技术统计 -->
+        <div class="demo-section">
+            <h2>📊 技术统计</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div style="text-align: center; padding: 30px; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 48px; color: var(--primary-color); font-weight: bold;">1,520+</div>
+                    <div style="color: var(--text-secondary); margin-top: 10px;">新增代码行数</div>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 48px; color: var(--success-color); font-weight: bold;">11</div>
+                    <div style="color: var(--text-secondary); margin-top: 10px;">动画效果</div>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 48px; color: var(--warning-color); font-weight: bold;">20+</div>
+                    <div style="color: var(--text-secondary); margin-top: 10px;">API方法</div>
+                </div>
+                <div style="text-align: center; padding: 30px; background: var(--bg-secondary); border-radius: 12px;">
+                    <div style="font-size: 48px; color: var(--info-color); font-weight: bold;">100%</div>
+                    <div style="color: var(--text-secondary); margin-top: 10px;">功能完成度</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小白学 - 互动式编程学习平台 | 第三阶段：区块联动系统 ✅</p>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/block-interaction.js"></script>
+    <script>
+        // 初始化管理器
+        const manager = new BlockInteractionManager();
+        
+        // 注册所有演示区块
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocks = document.querySelectorAll('[data-block-id]');
+            manager.registerBlocks(blocks);
+            console.log('已注册', blocks.length, '个演示区块');
+        });
+        
+        // 动画演示
+        function demoAnimation(type) {
+            const allBlocks = ['demo_1', 'demo_2', 'demo_3', 'demo_4', 'demo_5', 'demo_6', 'demo_7', 'demo_8', 'demo_9'];
+            
+            switch(type) {
+                case 'shake':
+                    manager.shake(allBlocks);
+                    break;
+                case 'pulse':
+                    manager.pulse(allBlocks);
+                    break;
+                case 'blink':
+                    manager.blink(allBlocks, 3);
+                    break;
+            }
+            
+            CommonUtils.showMessage(`播放${type}动画`, 'success');
+        }
+        
+        // 聚焦演示
+        function demoFocus() {
+            manager.focusBlock('demo_5');
+            CommonUtils.showMessage('聚焦到中心区块', 'success');
+        }
+        
+        // 清除高亮
+        function demoClear() {
+            manager.clearAllHighlights();
+            CommonUtils.showMessage('已清除所有高亮', 'info');
+        }
+    </script>
+</body>
+</html>

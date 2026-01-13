@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二阶段测试 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .test-section h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        .test-button {
+            margin-right: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        .test-result {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            font-family: 'Consolas', monospace;
+            font-size: var(--font-sm);
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .test-result.success {
+            border-left: 4px solid var(--success-color);
+        }
+        .test-result.error {
+            border-left: 4px solid var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>小白学 - 第二阶段测试</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">返回首页</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="test-container">
+        <div class="test-section">
+            <h3>📝 JSON数据结构测试</h3>
+            <button class="btn-primary test-button" onclick="testJSONStructure()">测试JSON结构创建</button>
+            <button class="btn-primary test-button" onclick="testValidation()">测试数据验证</button>
+            <div id="jsonStructureResult" class="test-result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>💾 localStorage数据管理测试</h3>
+            <button class="btn-primary test-button" onclick="testLoadExample()">加载示例数据</button>
+            <button class="btn-primary test-button" onclick="testSaveExample()">保存示例数据</button>
+            <button class="btn-primary test-button" onclick="testGetExamples()">获取所有示例</button>
+            <div id="storageResult" class="test-result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🎨 区块渲染测试</h3>
+            <button class="btn-primary test-button" onclick="testRenderCodeBlock()">渲染代码块</button>
+            <button class="btn-primary test-button" onclick="testRenderDescription()">渲染描述块</button>
+            <button class="btn-primary test-button" onclick="testRenderHtmlContainer()">渲染HTML容器</button>
+            <div id="renderResult" class="test-result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 完整流程测试</h3>
+            <button class="btn-success test-button" onclick="testFullFlow()">运行完整流程测试</button>
+            <button class="btn-secondary test-button" onclick="clearAllData()">清空所有数据</button>
+            <div id="fullFlowResult" class="test-result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🚀 快速跳转</h3>
+            <button class="btn-primary test-button" onclick="goToHome()">首页</button>
+            <button class="btn-primary test-button" onclick="goToLearning()">学习页面</button>
+            <button class="btn-primary test-button" onclick="goToCreator()">创作者中心</button>
+        </div>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/json-structure.js"></script>
+    <script src="js/block-renderer.js"></script>
+    <script>
+        const renderer = new BlockRenderer();
+
+        function showResult(elementId, content, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = 'test-result ' + (isSuccess ? 'success' : 'error');
+            element.textContent = content;
+        }
+
+        function testJSONStructure() {
+            try {
+                const exampleId = CommonUtils.generateExampleId();
+                const structure = JSONStructure.createEmptyStructure(exampleId, {
+                    title: '测试示例',
+                    description: '这是一个测试示例'
+                });
+                
+                const bigStep = JSONStructure.createBigStep('第一步', '这是第一个大步骤');
+                const smallStep = JSONStructure.createSmallStep('第一个概念', '学习第一个概念');
+                const codeBlock = JSONStructure.createBlock('code-block', {
+                    language: 'html',
+                    content: '<h1>Hello World</h1>'
+                });
+                
+                smallStep.blocks.rightArea.push(codeBlock);
+                bigStep.smallSteps.push(smallStep);
+                structure.bigSteps.push(bigStep);
+                
+                showResult('jsonStructureResult', '✅ JSON结构创建成功！\n\n' + JSON.stringify(structure, null, 2));
+            } catch (error) {
+                showResult('jsonStructureResult', '❌ 测试失败: ' + error.message, false);
+            }
+        }
+
+        function testValidation() {
+            try {
+                const validData = {
+                    exampleId: 'test_001',
+                    metadata: { title: '测试' },
+                    bigSteps: [{
+                        bigStepId: 'big_01',
+                        title: '步骤1',
+                        smallSteps: [{
+                            smallStepId: 'small_01',
+                            title: '概念1',
+                            blocks: { leftArea: [], rightArea: [] }
+                        }]
+                    }]
+                };
+                
+                const result = JSONStructure.validateStructure(validData);
+                
+                showResult('jsonStructureResult', 
+                    result.valid ? 
+                    '✅ 数据验证通过！' : 
+                    '❌ 数据验证失败: ' + result.errors.join(', '),
+                    result.valid
+                );
+            } catch (error) {
+                showResult('jsonStructureResult', '❌ 测试失败: ' + error.message, false);
+            }
+        }
+
+        async function testLoadExample() {
+            try {
+                await CommonUtils.initializeExampleFromFile('data/examples/html-basic.json', true);
+                showResult('storageResult', '✅ 示例数据加载成功！');
+            } catch (error) {
+                showResult('storageResult', '❌ 加载失败: ' + error.message, false);
+            }
+        }
+
+        function testSaveExample() {
+            try {
+                const testData = {
+                    exampleId: 'test_save_001',
+                    metadata: { title: '保存测试示例' },
+                    bigSteps: []
+                };
+                
+                CommonUtils.saveExampleData(testData.exampleId, testData);
+                const retrieved = CommonUtils.getExampleData(testData.exampleId);
+                
+                showResult('storageResult', 
+                    retrieved ? 
+                    '✅ 数据保存并读取成功！\n\n' + JSON.stringify(retrieved, null, 2) : 
+                    '❌ 数据读取失败',
+                    !!retrieved
+                );
+            } catch (error) {
+                showResult('storageResult', '❌ 测试失败: ' + error.message, false);
+            }
+        }
+
+        function testGetExamples() {
+            try {
+                const examples = CommonUtils.getAllExamples();
+                showResult('storageResult', 
+                    `✅ 找到 ${examples.length} 个示例\n\n` + 
+                    JSON.stringify(examples, null, 2)
+                );
+            } catch (error) {
+                showResult('storageResult', '❌ 测试失败: ' + error.message, false);
+            }
+        }
+
+        function testRenderCodeBlock() {
+            try {
+                const block = {
+                    id: 'test_code_01',
+                    type: 'code-block',
+                    language: 'javascript',
+                    content: 'console.log("Hello World");',
+                    associations: []
+                };
+                
+                const element = renderer.render(block);
+                const container = document.getElementById('renderResult');
+                container.innerHTML = '';
+                container.appendChild(element);
+                container.style.display = 'block';
+                container.className = 'test-result success';
+            } catch (error) {
+                showResult('renderResult', '❌ 渲染失败: ' + error.message, false);
+            }
+        }
+
+        function testRenderDescription() {
+            try {
+                const block = {
+                    id: 'test_desc_01',
+                    type: 'description',
+                    content: '<h4>描述标题</h4><p>这是一个描述块的示例</p>',
+                    associations: []
+                };
+                
+                const element = renderer.render(block);
+                const container = document.getElementById('renderResult');
+                container.innerHTML = '';
+                container.appendChild(element);
+                container.style.display = 'block';
+                container.className = 'test-result success';
+            } catch (error) {
+                showResult('renderResult', '❌ 渲染失败: ' + error.message, false);
+            }
+        }
+
+        function testRenderHtmlContainer() {
+            try {
+                const block = {
+                    id: 'test_html_01',
+                    type: 'html-container',
+                    content: '<div style="padding: 20px; background: #4A90E2; color: white; border-radius: 8px;"><h3>HTML容器测试</h3><p>这是渲染的HTML内容</p></div>',
+                    associations: []
+                };
+                
+                const element = renderer.render(block);
+                const container = document.getElementById('renderResult');
+                container.innerHTML = '';
+                container.appendChild(element);
+                container.style.display = 'block';
+                container.className = 'test-result success';
+            } catch (error) {
+                showResult('renderResult', '❌ 渲染失败: ' + error.message, false);
+            }
+        }
+
+        async function testFullFlow() {
+            const results = [];
+            
+            try {
+                // 测试1: 加载示例数据
+                results.push('📝 测试1: 加载示例数据...');
+                await CommonUtils.initializeExampleFromFile('data/examples/html-basic.json', true);
+                results.push('✅ 示例数据加载成功\n');
+                
+                // 测试2: 获取示例列表
+                results.push('📝 测试2: 获取示例列表...');
+                const examples = CommonUtils.getPublishedExamples();
+                results.push(`✅ 找到 ${examples.length} 个已发布示例\n`);
+                
+                // 测试3: 读取示例数据
+                results.push('📝 测试3: 读取示例数据...');
+                const exampleData = CommonUtils.getExampleData('ex_html_basic_001');
+                if (exampleData) {
+                    results.push(`✅ 成功读取示例: ${exampleData.metadata.title}`);
+                    results.push(`   - 大步骤数: ${exampleData.bigSteps.length}`);
+                    results.push(`   - 第一个大步骤标题: ${exampleData.bigSteps[0].title}\n`);
+                } else {
+                    results.push('❌ 读取示例数据失败\n');
+                }
+                
+                // 测试4: 渲染区块
+                results.push('📝 测试4: 渲染区块...');
+                const testBlock = {
+                    id: 'test_block',
+                    type: 'code-block',
+                    language: 'html',
+                    content: '<h1>测试</h1>',
+                    associations: []
+                };
+                const element = renderer.render(testBlock);
+                results.push('✅ 区块渲染成功\n');
+                
+                // 测试5: JSON验证
+                results.push('📝 测试5: JSON数据验证...');
+                const validation = JSONStructure.validateStructure(exampleData);
+                results.push(validation.valid ? '✅ 数据结构验证通过\n' : '❌ 数据结构验证失败\n');
+                
+                results.push('\n🎉 所有测试完成！');
+                showResult('fullFlowResult', results.join('\n'));
+            } catch (error) {
+                results.push('\n❌ 测试失败: ' + error.message);
+                showResult('fullFlowResult', results.join('\n'), false);
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('确定要清空所有示例数据吗？')) {
+                localStorage.clear();
+                CommonUtils.showMessage('所有数据已清空', 'success');
+                showResult('fullFlowResult', '✅ 所有数据已清空');
+            }
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function goToLearning() {
+            const examples = CommonUtils.getPublishedExamples();
+            if (examples.length > 0) {
+                window.location.href = `learning.html?exampleId=${examples[0].exampleId}`;
+            } else {
+                CommonUtils.showMessage('请先加载示例数据', 'warning');
+            }
+        }
+
+        function goToCreator() {
+            window.location.href = 'creator.html';
+        }
+    </script>
+</body>
+</html>

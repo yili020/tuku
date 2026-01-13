@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创作者中心 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/creator.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>小白学</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">返回首页</a>
+                <a href="creator.html" class="nav-link active">创作者中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 标题和操作按钮 -->
+            <section class="creator-header">
+                <div class="header-content">
+                    <h2>我的示例</h2>
+                    <p class="desc">管理和创建学习示例</p>
+                </div>
+                <div class="header-actions">
+                    <button id="createNewBtn" class="btn-primary">
+                        <span>+ 创建新示例</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 示例列表 -->
+            <section class="examples-list-section">
+                <div id="examplesList" class="examples-list">
+                    <!-- 示例列表项将通过JavaScript动态生成 -->
+                    <!-- 示例列表项模板：
+                    <div class="example-item" data-example-id="ex_001">
+                        <div class="example-info">
+                            <h3 class="example-title">HTML基础示例</h3>
+                            <p class="example-desc">学习HTML基础标签</p>
+                            <div class="example-meta">
+                                <span class="meta-item">创建时间: 2024-01-15</span>
+                                <span class="meta-item status-published">已发布</span>
+                            </div>
+                        </div>
+                        <div class="example-actions">
+                            <button class="btn-action edit-btn" data-action="edit">编辑</button>
+                            <button class="btn-action preview-btn" data-action="preview">预览</button>
+                            <button class="btn-action publish-btn" data-action="publish">发布</button>
+                            <button class="btn-action delete-btn" data-action="delete">删除</button>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+                <!-- 暂无示例提示 -->
+                <div id="noExamples" class="no-examples" style="display: none;">
+                    <div class="no-examples-content">
+                        <p class="no-examples-title">还没有创建任何示例</p>
+                        <p class="no-examples-desc">点击"创建新示例"按钮开始创建你的第一个学习示例</p>
+                        <button class="btn-primary create-first-btn">
+                            <span>+ 创建第一个示例</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 创作页面容器（隐藏，点击编辑时显示） -->
+    <div id="editorContainer" class="editor-container" style="display: none;">
+        <div class="editor-layout">
+            <!-- 编辑器头部 -->
+            <div class="editor-header">
+                <div class="editor-title">
+                    <h3 id="editorTitle">编辑示例</h3>
+                    <input type="text" id="exampleTitleInput" class="title-input" placeholder="输入示例标题">
+                </div>
+                <div class="editor-actions">
+                    <button id="saveBtn" class="btn-success">保存</button>
+                    <button id="exportBtn" class="btn-primary">导出JSON</button>
+                    <button id="closeEditorBtn" class="btn-secondary">关闭</button>
+                </div>
+            </div>
+
+            <!-- 编辑器主体：左右分栏 -->
+            <div class="editor-body">
+                <!-- 左侧：效果展示区（可编辑） -->
+                <div class="editor-left">
+                    <div class="panel-header">
+                        <h4>效果展示区</h4>
+                        <button class="btn-small add-block-btn" data-area="left">+ 添加区块</button>
+                    </div>
+                    <div id="editorDisplayArea" class="editor-display-area">
+                        <!-- 可编辑的展示区块 -->
+                    </div>
+                </div>
+
+                <!-- 右侧：代码解释区（可编辑） -->
+                <div class="editor-right">
+                    <div class="panel-header">
+                        <h4>代码解释区</h4>
+                        <button class="btn-small add-block-btn" data-area="right">+ 添加区块</button>
+                    </div>
+                    <div id="editorCodeArea" class="editor-code-area">
+                        <!-- 可编辑的代码和解释区块 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 区块管理面板 -->
+            <div class="block-management-panel">
+                <div class="panel-header">
+                    <h4>区块管理</h4>
+                    <button class="panel-toggle-btn">收起</button>
+                </div>
+                <div id="blockManagementContent" class="panel-content">
+                    <!-- 区块列表和关联设置 -->
+                    <div class="block-list">
+                        <p class="hint">选择区块配置关联关系和样式</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小白学 - 互动式编程学习平台</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+    <script src="js/creator.js"></script>
+</body>
+</html>

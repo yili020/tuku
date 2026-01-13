@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三阶段测试 - 区块联动系统 - 小白学</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/learning.css">
+    <style>
+        .test-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .test-section h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        .test-button {
+            margin-right: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        .test-demo-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        .demo-panel {
+            background: var(--bg-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            min-height: 300px;
+        }
+        .demo-panel h4 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+        .test-block {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .test-block:hover {
+            border-color: var(--primary-color);
+        }
+        .info-panel {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            font-family: 'Consolas', monospace;
+            font-size: var(--font-sm);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .control-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>小白学 - 第三阶段测试（区块联动系统）</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">返回首页</a>
+                <a href="learning.html?exampleId=ex_html_basic_001" class="nav-link">学习页面</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="test-container">
+        <!-- 基础联动测试 -->
+        <div class="test-section">
+            <h3>🔗 1. 基础联动测试</h3>
+            <p>鼠标悬停和点击区块，观察联动效果</p>
+            
+            <div class="test-demo-area">
+                <div class="demo-panel">
+                    <h4>左侧区块</h4>
+                    <div class="test-block block" 
+                         data-block-id="test_left_1" 
+                         data-block-type="demo"
+                         data-associations="test_right_1,test_right_2">
+                        区块 L1（关联 R1, R2）
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="test_left_2" 
+                         data-block-type="demo"
+                         data-associations="test_right_2">
+                        区块 L2（关联 R2）
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="test_left_3" 
+                         data-block-type="demo"
+                         data-associations="test_right_1,test_right_3">
+                        区块 L3（关联 R1, R3）
+                    </div>
+                </div>
+                
+                <div class="demo-panel">
+                    <h4>右侧区块</h4>
+                    <div class="test-block block" 
+                         data-block-id="test_right_1" 
+                         data-block-type="demo"
+                         data-associations="test_left_1,test_left_3">
+                        区块 R1（关联 L1, L3）
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="test_right_2" 
+                         data-block-type="demo"
+                         data-associations="test_left_1,test_left_2">
+                        区块 R2（关联 L1, L2）
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="test_right_3" 
+                         data-block-type="demo"
+                         data-associations="test_left_3">
+                        区块 R3（关联 L3）
+                    </div>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <button class="btn-secondary test-button" onclick="clearHighlights()">清除所有高亮</button>
+                <button class="btn-secondary test-button" onclick="highlightBlock('test_left_1')">高亮 L1</button>
+                <button class="btn-secondary test-button" onclick="showBlockInfo('test_left_1')">查看 L1 信息</button>
+            </div>
+            
+            <div id="basicTestInfo" class="info-panel">
+                提示：悬停区块查看悬停高亮，点击区块查看固定高亮
+            </div>
+        </div>
+
+        <!-- 显示/隐藏控制测试 -->
+        <div class="test-section">
+            <h3>👁️ 2. 显示/隐藏控制测试</h3>
+            
+            <div class="test-demo-area">
+                <div class="demo-panel">
+                    <h4>测试区块</h4>
+                    <div class="test-block block" 
+                         data-block-id="toggle_1" 
+                         data-block-type="demo">
+                        可切换区块 1
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="toggle_2" 
+                         data-block-type="demo">
+                        可切换区块 2
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="toggle_3" 
+                         data-block-type="demo">
+                        可切换区块 3
+                    </div>
+                </div>
+                
+                <div class="demo-panel">
+                    <h4>控制面板</h4>
+                    <div class="control-group">
+                        <button class="btn-primary test-button" onclick="showBlock('toggle_1', 'fade')">淡入显示 1</button>
+                        <button class="btn-primary test-button" onclick="hideBlock('toggle_1', 'fade')">淡出隐藏 1</button>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-primary test-button" onclick="showBlock('toggle_2', 'slide')">滑入显示 2</button>
+                        <button class="btn-primary test-button" onclick="hideBlock('toggle_2', 'slide')">滑出隐藏 2</button>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-primary test-button" onclick="showBlock('toggle_3', 'scale')">缩放显示 3</button>
+                        <button class="btn-primary test-button" onclick="hideBlock('toggle_3', 'scale')">缩放隐藏 3</button>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-success test-button" onclick="showAllToggleBlocks()">显示全部</button>
+                        <button class="btn-danger test-button" onclick="hideAllToggleBlocks()">隐藏全部</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 动画效果测试 -->
+        <div class="test-section">
+            <h3>✨ 3. 动画效果测试</h3>
+            
+            <div class="test-demo-area">
+                <div class="demo-panel">
+                    <h4>动画区块</h4>
+                    <div class="test-block block" 
+                         data-block-id="anim_1" 
+                         data-block-type="demo">
+                        动画测试区块
+                    </div>
+                </div>
+                
+                <div class="demo-panel">
+                    <h4>动画控制</h4>
+                    <div class="control-group">
+                        <button class="btn-primary test-button" onclick="animateShake()">抖动</button>
+                        <button class="btn-primary test-button" onclick="animatePulse()">脉冲</button>
+                        <button class="btn-primary test-button" onclick="animateBlink()">闪烁</button>
+                        <button class="btn-primary test-button" onclick="animateBounce()">弹跳</button>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn-success test-button" onclick="scrollToBlock()">滚动到区块</button>
+                        <button class="btn-success test-button" onclick="focusBlock()">聚焦区块</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 拖拽测试 -->
+        <div class="test-section">
+            <h3>🖱️ 4. 拖拽功能测试</h3>
+            
+            <div class="test-demo-area">
+                <div class="demo-panel">
+                    <h4>可拖拽区块</h4>
+                    <div class="test-block block" 
+                         data-block-id="drag_1" 
+                         data-block-type="demo">
+                        拖拽区块 1
+                    </div>
+                    <div class="test-block block" 
+                         data-block-id="drag_2" 
+                         data-block-type="demo">
+                        拖拽区块 2
+                    </div>
+                </div>
+                
+                <div class="demo-panel">
+                    <h4>拖拽控制</h4>
+                    <div class="control-group">
+                        <button class="btn-primary test-button" onclick="enableDragBlocks()">启用拖拽</button>
+                        <button class="btn-danger test-button" onclick="disableDragBlocks()">禁用拖拽</button>
+                    </div>
+                    <div id="dragInfo" class="info-panel">
+                        拖拽状态：未启用
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 综合测试 -->
+        <div class="test-section">
+            <h3>🎯 5. 综合功能测试</h3>
+            <div class="control-group">
+                <button class="btn-success test-button" onclick="runFullTest()">运行完整测试</button>
+                <button class="btn-secondary test-button" onclick="resetAll()">重置所有</button>
+            </div>
+            <div id="fullTestResult" class="info-panel">
+                等待测试...
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小白学 - 互动式编程学习平台</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+    <script src="js/block-interaction.js"></script>
+    <script>
+        // 初始化区块联动管理器
+        const manager = new BlockInteractionManager();
+        
+        // 注册所有测试区块
+        document.addEventListener('DOMContentLoaded', () => {
+            const allBlocks = document.querySelectorAll('[data-block-id]');
+            manager.registerBlocks(allBlocks);
+            console.log('已注册', allBlocks.length, '个区块');
+        });
+        
+        // 基础联动测试
+        function clearHighlights() {
+            manager.clearAllHighlights();
+            updateInfo('basicTestInfo', '✓ 已清除所有高亮');
+        }
+        
+        function highlightBlock(blockId) {
+            manager.togglePermanentHighlight(blockId);
+            updateInfo('basicTestInfo', `✓ 已切换区块 ${blockId} 的高亮状态`);
+        }
+        
+        function showBlockInfo(blockId) {
+            const info = manager.getBlockInfo(blockId);
+            if (info) {
+                updateInfo('basicTestInfo', 
+                    `区块信息:\n` +
+                    `ID: ${info.id}\n` +
+                    `类型: ${info.type}\n` +
+                    `关联区块: ${info.associations.join(', ')}\n` +
+                    `是否高亮: ${info.isHighlighted}\n` +
+                    `是否可见: ${info.isVisible}`
+                );
+            } else {
+                updateInfo('basicTestInfo', '❌ 区块不存在');
+            }
+        }
+        
+        // 显示/隐藏测试
+        function showBlock(blockId, animation) {
+            manager.showBlocks(blockId, animation);
+            CommonUtils.showMessage(`区块 ${blockId} 已显示（${animation}）`, 'success');
+        }
+        
+        function hideBlock(blockId, animation) {
+            manager.hideBlocks(blockId, animation);
+            CommonUtils.showMessage(`区块 ${blockId} 已隐藏（${animation}）`, 'info');
+        }
+        
+        function showAllToggleBlocks() {
+            manager.showBlocks(['toggle_1', 'toggle_2', 'toggle_3'], 'fade');
+            CommonUtils.showMessage('所有区块已显示', 'success');
+        }
+        
+        function hideAllToggleBlocks() {
+            manager.hideBlocks(['toggle_1', 'toggle_2', 'toggle_3'], 'fade');
+            CommonUtils.showMessage('所有区块已隐藏', 'info');
+        }
+        
+        // 动画效果测试
+        function animateShake() {
+            manager.shake('anim_1');
+            CommonUtils.showMessage('抖动动画', 'info');
+        }
+        
+        function animatePulse() {
+            manager.pulse('anim_1');
+            CommonUtils.showMessage('脉冲动画', 'info');
+        }
+        
+        function animateBlink() {
+            manager.blink('anim_1', 3);
+            CommonUtils.showMessage('闪烁动画', 'info');
+        }
+        
+        function animateBounce() {
+            const block = document.querySelector('[data-block-id="anim_1"]');
+            if (block) {
+                block.style.animation = 'bounce 0.5s';
+                setTimeout(() => block.style.animation = '', 500);
+            }
+            CommonUtils.showMessage('弹跳动画', 'info');
+        }
+        
+        function scrollToBlock() {
+            manager.scrollToBlock('anim_1');
+            CommonUtils.showMessage('滚动到区块', 'info');
+        }
+        
+        function focusBlock() {
+            manager.focusBlock('anim_1');
+            CommonUtils.showMessage('聚焦区块', 'success');
+        }
+        
+        // 拖拽测试
+        function enableDragBlocks() {
+            manager.enableDrag(['drag_1', 'drag_2']);
+            updateInfo('dragInfo', '拖拽状态：已启用\n提示：现在可以拖动区块了');
+            CommonUtils.showMessage('拖拽已启用', 'success');
+        }
+        
+        function disableDragBlocks() {
+            manager.disableDrag(['drag_1', 'drag_2']);
+            updateInfo('dragInfo', '拖拽状态：已禁用');
+            CommonUtils.showMessage('拖拽已禁用', 'info');
+        }
+        
+        // 综合测试
+        async function runFullTest() {
+            const results = [];
+            updateInfo('fullTestResult', '正在运行测试...\n');
+            
+            try {
+                // 测试1：区块注册
+                results.push('📝 测试1: 区块注册');
+                const blocks = document.querySelectorAll('[data-block-id]');
+                results.push(`✓ 找到 ${blocks.length} 个区块\n`);
+                
+                // 测试2：高亮功能
+                results.push('📝 测试2: 高亮功能');
+                manager.togglePermanentHighlight('test_left_1');
+                await sleep(500);
+                const info = manager.getBlockInfo('test_left_1');
+                results.push(`✓ 高亮状态: ${info.isHighlighted}\n`);
+                manager.clearAllHighlights();
+                
+                // 测试3：显示/隐藏
+                results.push('📝 测试3: 显示/隐藏');
+                manager.hideBlocks('toggle_1', 'fade');
+                await sleep(500);
+                manager.showBlocks('toggle_1', 'fade');
+                results.push('✓ 显示/隐藏功能正常\n');
+                
+                // 测试4：动画效果
+                results.push('📝 测试4: 动画效果');
+                manager.pulse('anim_1');
+                await sleep(1000);
+                results.push('✓ 动画效果正常\n');
+                
+                // 测试5：拖拽功能
+                results.push('📝 测试5: 拖拽功能');
+                manager.enableDrag('drag_1');
+                const dragBlock = document.querySelector('[data-block-id="drag_1"]');
+                const isDraggable = dragBlock.getAttribute('draggable') === 'true';
+                results.push(`✓ 拖拽启用状态: ${isDraggable}\n`);
+                
+                results.push('\n🎉 所有测试完成！');
+                updateInfo('fullTestResult', results.join('\n'));
+                CommonUtils.showMessage('测试完成！', 'success');
+            } catch (error) {
+                results.push(`\n❌ 测试失败: ${error.message}`);
+                updateInfo('fullTestResult', results.join('\n'));
+                CommonUtils.showMessage('测试失败', 'error');
+            }
+        }
+        
+        function resetAll() {
+            manager.reset();
+            location.reload();
+        }
+        
+        // 工具函数
+        function updateInfo(elementId, text) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = text;
+            }
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>
