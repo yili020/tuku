@@ -1,0 +1,341 @@
+/* ==================== 
+   创作者中心专用样式
+   ==================== */
+
+/* 创作者头部 */
+.creator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.header-content h2 {
+    font-size: var(--font-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.header-content .desc {
+    color: var(--text-secondary);
+    font-size: var(--font-md);
+}
+
+/* 示例列表 */
+.examples-list-section {
+    margin-top: var(--spacing-xl);
+}
+
+.examples-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* 示例列表项 */
+.example-item {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition-normal);
+}
+
+.example-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.example-info {
+    flex: 1;
+}
+
+.example-info .example-title {
+    font-size: var(--font-lg);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.example-info .example-desc {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.example-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    font-size: var(--font-xs);
+    color: var(--text-light);
+}
+
+.status-published {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.status-draft {
+    color: var(--warning-color);
+    font-weight: 500;
+}
+
+/* 示例操作按钮 */
+.example-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn-action {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
+    transition: all var(--transition-fast);
+}
+
+.edit-btn {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.preview-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-white);
+}
+
+.preview-btn:hover {
+    background-color: #45B068;
+}
+
+.publish-btn {
+    background-color: var(--warning-color);
+    color: var(--text-white);
+}
+
+.publish-btn:hover {
+    background-color: #E09612;
+}
+
+.delete-btn {
+    background-color: var(--danger-color);
+    color: var(--text-white);
+}
+
+.delete-btn:hover {
+    background-color: #C0392B;
+}
+
+/* 暂无示例提示 */
+.no-examples {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.no-examples-content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.no-examples-title {
+    font-size: var(--font-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.no-examples-desc {
+    font-size: var(--font-md);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.create-first-btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+}
+
+/* 编辑器容器 */
+.editor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-overlay);
+    z-index: 2000;
+    overflow: hidden;
+}
+
+.editor-layout {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 编辑器头部 */
+.editor-header {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.editor-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.editor-title h3 {
+    font-size: var(--font-lg);
+    color: var(--text-primary);
+}
+
+.title-input {
+    font-size: var(--font-md);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    min-width: 300px;
+}
+
+.editor-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* 编辑器主体 */
+.editor-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    overflow: hidden;
+}
+
+.editor-left, .editor-right {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h4 {
+    font-size: var(--font-md);
+    color: var(--text-primary);
+}
+
+.editor-display-area, .editor-code-area {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+/* 区块管理面板 */
+.block-management-panel {
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    max-height: 250px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-toggle-btn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-sm);
+}
+
+.panel-toggle-btn:hover {
+    color: var(--primary-color);
+}
+
+.panel-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+.block-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .creator-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .example-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .example-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .editor-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .example-actions {
+        flex-wrap: wrap;
+    }
+    
+    .btn-action {
+        flex: 1;
+        min-width: 60px;
+    }
+    
+    .title-input {
+        min-width: 200px;
+    }
+    
+    .editor-actions {
+        flex-wrap: wrap;
+    }
+}
