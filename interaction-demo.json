@@ -1,0 +1,275 @@
+{
+  "exampleId": "ex_interaction_demo_001",
+  "metadata": {
+    "title": "区块联动演示",
+    "description": "展示区块间的交互和联动效果",
+    "difficulty": "beginner",
+    "estimatedTime": 15,
+    "tags": ["交互", "联动", "演示"],
+    "author": "小白学团队",
+    "version": "1.0"
+  },
+  "bigSteps": [
+    {
+      "bigStepId": "big_01",
+      "title": "基础联动",
+      "description": "了解区块间的基础联动效果",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0101",
+          "title": "点击高亮联动",
+          "description": "点击区块，查看关联区块的高亮效果",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_01",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center;'><h2>✨ 点击这里</h2><p>查看右侧代码高亮</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_01", "demo_desc_01"],
+                "actions": [
+                  {
+                    "event": "click",
+                    "action": "toggleHighlight",
+                    "targets": ["demo_code_01", "demo_desc_01"]
+                  }
+                ]
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_01",
+                "type": "code-block",
+                "language": "html",
+                "content": "<div class=\"demo\">\n  <h2>✨ 点击这里</h2>\n  <p>查看右侧代码高亮</p>\n</div>",
+                "lineHighlights": [],
+                "associations": ["demo_display_01", "demo_desc_01"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_01",
+                "type": "description",
+                "content": "<h4>🔗 联动说明</h4><p>这是一个基础的点击联动示例：</p><ul><li>点击左侧的展示区域</li><li>右侧的代码块会高亮显示</li><li>说明文字也会同时高亮</li><li>再次点击可以取消高亮</li></ul><p class='hint'>💡 提示：这种联动可以帮助学习者快速找到对应的代码</p>",
+                "associations": ["demo_display_01", "demo_code_01"],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0102",
+          "title": "悬停高亮联动",
+          "description": "鼠标悬停时的联动效果",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_02",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px; text-align: center;'><h2>🖱️ 鼠标悬停</h2><p>查看右侧高亮变化</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_02"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_02",
+                "type": "code-block",
+                "language": "css",
+                "content": ".demo:hover {\n  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);\n  color: white;\n  transform: scale(1.05);\n  transition: all 0.3s ease;\n}",
+                "lineHighlights": [1, 5],
+                "associations": ["demo_display_02"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_02",
+                "type": "description",
+                "content": "<h4>🎯 悬停联动</h4><p>悬停联动是一种更轻量的交互方式：</p><ul><li>鼠标移到左侧展示区</li><li>右侧代码会自动高亮</li><li>鼠标移开后自动取消</li><li>不需要点击操作</li></ul><p class='hint'>💡 提示：适合快速浏览和对比</p>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "bigStepId": "big_02",
+      "title": "动态控制",
+      "description": "学习区块的动态显示和隐藏",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0201",
+          "title": "显示/隐藏控制",
+          "description": "控制区块的可见性",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_03",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: #f0f0f0; border-radius: 8px;'><button onclick='toggleContent()' style='padding: 10px 20px; background: #4A90E2; color: white; border: none; border-radius: 6px; cursor: pointer;'>点击切换内容</button><div id='toggleContent' style='margin-top: 20px; padding: 15px; background: white; border-radius: 6px; display: none;'>这是可以切换显示的内容！</div></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_03"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_03",
+                "type": "code-block",
+                "language": "javascript",
+                "content": "function toggleContent() {\n  const element = document.getElementById('toggleContent');\n  const isVisible = element.style.display !== 'none';\n  \n  if (isVisible) {\n    element.style.display = 'none';\n  } else {\n    element.style.display = 'block';\n  }\n}",
+                "lineHighlights": [2, 5, 7],
+                "associations": ["demo_display_03"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_03",
+                "type": "description",
+                "content": "<h4>👁️ 显示控制</h4><p>区块的显示和隐藏控制：</p><ul><li><strong>show()</strong>：显示区块</li><li><strong>hide()</strong>：隐藏区块</li><li><strong>toggle()</strong>：切换显示状态</li></ul><p>支持多种动画效果：</p><ul><li>淡入淡出（fade）</li><li>滑动（slide）</li><li>缩放（scale）</li></ul>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0202",
+          "title": "动画过渡",
+          "description": "添加平滑的过渡动画",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_04",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%); color: white; border-radius: 12px; text-align: center;'><h2>✨ 动画示例</h2><p>平滑的过渡效果</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_04"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_04",
+                "type": "code-block",
+                "language": "css",
+                "content": ".block {\n  transition: all 0.3s ease-in-out;\n}\n\n.block.show {\n  opacity: 1;\n  transform: translateY(0);\n}\n\n.block.hide {\n  opacity: 0;\n  transform: translateY(-20px);\n}",
+                "lineHighlights": [2],
+                "associations": ["demo_display_04"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_04",
+                "type": "description",
+                "content": "<h4>🎬 动画效果</h4><p>系统支持多种预设动画：</p><ul><li><strong>脉冲（pulse）</strong>：吸引注意力</li><li><strong>抖动（shake）</strong>：提示错误</li><li><strong>弹跳（bounce）</strong>：活泼效果</li><li><strong>闪烁（blink）</strong>：重要提示</li></ul><p class='hint'>💡 动画可以让交互更加生动有趣</p>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "bigStepId": "big_03",
+      "title": "高级交互",
+      "description": "探索更多交互可能性",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0301",
+          "title": "聚焦功能",
+          "description": "快速定位到目标区块",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_05",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; background: linear-gradient(135deg, #FFA500 0%, #FF6347 100%); color: white; border-radius: 12px; text-align: center;'><h2>🎯 聚焦演示</h2><p>高亮 + 滚动 + 动画</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_05"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_05",
+                "type": "code-block",
+                "language": "javascript",
+                "content": "// 聚焦到指定区块\nfunction focusBlock(blockId) {\n  // 1. 清除其他高亮\n  clearAllHighlights();\n  \n  // 2. 高亮目标区块\n  toggleHighlight(blockId);\n  \n  // 3. 滚动到区块\n  scrollToBlock(blockId);\n  \n  // 4. 添加脉冲动画\n  pulse(blockId);\n}",
+                "lineHighlights": [2, 7, 10, 13],
+                "associations": ["demo_display_05"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_05",
+                "type": "description",
+                "content": "<h4>🎯 聚焦功能</h4><p>聚焦是一个组合功能，包含：</p><ol><li>清除页面上的其他高亮</li><li>高亮目标区块</li><li>平滑滚动到区块位置</li><li>播放脉冲动画吸引注意</li></ol><p class='hint'>💡 适合用于引导用户关注特定内容</p>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0302",
+          "title": "多区块联动",
+          "description": "同时控制多个区块",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "demo_display_06",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; background: linear-gradient(135deg, #2E3192 0%, #1BFFFF 100%); color: white; border-radius: 12px; text-align: center;'><h2>🔗 批量联动</h2><p>一次控制多个区块</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["demo_code_06", "demo_desc_06"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "demo_code_06",
+                "type": "code-block",
+                "language": "javascript",
+                "content": "// 批量操作区块\nconst blockIds = ['block1', 'block2', 'block3'];\n\n// 批量显示\nshowBlocks(blockIds, 'fade');\n\n// 批量隐藏\nhideBlocks(blockIds, 'slide');\n\n// 批量高亮\nhighlight(blockIds);",
+                "lineHighlights": [2, 5, 8, 11],
+                "associations": ["demo_display_06"],
+                "actions": []
+              },
+              {
+                "id": "demo_desc_06",
+                "type": "description",
+                "content": "<h4>🔗 批量操作</h4><p>支持同时操作多个区块：</p><ul><li>传入区块ID数组</li><li>所有区块执行相同操作</li><li>保持动画同步</li><li>提高操作效率</li></ul><p class='hint'>💡 批量操作让页面交互更加统一协调</p>",
+                "associations": ["demo_display_06"],
+                "actions": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

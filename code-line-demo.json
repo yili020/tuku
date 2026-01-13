@@ -1,0 +1,266 @@
+{
+  "exampleId": "ex_code_line_demo_001",
+  "metadata": {
+    "title": "代码行联动演示",
+    "description": "展示代码行级别的双向联动效果",
+    "difficulty": "beginner",
+    "estimatedTime": 10,
+    "tags": ["代码行", "联动", "微信小程序"],
+    "author": "小白学团队",
+    "version": "2.0"
+  },
+  "bigSteps": [
+    {
+      "bigStepId": "big_01",
+      "title": "View组件基础",
+      "description": "学习微信小程序view组件的基本结构",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0101",
+          "title": "基础view结构",
+          "description": "了解view组件的开始标签、内容和结束标签",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "display_view_open",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center; margin-bottom: 10px;'><h3>📦 View容器开始</h3><p>视图容器的起始标签</p></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_view_open"]
+              },
+              {
+                "id": "display_image",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px; text-align: center; margin-bottom: 10px;'><h3>🖼️ Image图片</h3><div style='width: 60px; height: 60px; background: rgba(255,255,255,0.3); border-radius: 8px; margin: 10px auto; display: flex; align-items: center; justify-content: center;'>🏠</div><p>home.png</p></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_image"]
+              },
+              {
+                "id": "display_view_close",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 12px; text-align: center;'><h3>📦 View容器结束</h3><p>视图容器的结束标签</p></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_view_close"]
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "code_block_01",
+                "type": "code-block",
+                "language": "wxml",
+                "content": "<view>\n  <image src=\"/image/home.png\"></image>\n</view>",
+                "codeLines": [
+                  {
+                    "id": "line_view_open",
+                    "displayBlockId": "display_view_open",
+                    "descriptionId": "desc_view_open"
+                  },
+                  {
+                    "id": "line_image",
+                    "displayBlockId": "display_image",
+                    "descriptionId": "desc_image"
+                  },
+                  {
+                    "id": "line_view_close",
+                    "displayBlockId": "display_view_close",
+                    "descriptionId": "desc_view_close"
+                  }
+                ]
+              },
+              {
+                "id": "desc_view_open",
+                "type": "description",
+                "content": "<h4>📦 &lt;view&gt; 开始标签</h4><p><code>&lt;view&gt;</code> 是微信小程序中最基础的容器组件，类似于HTML中的<code>&lt;div&gt;</code>。</p><ul><li>用于包裹其他组件</li><li>可以设置样式控制布局</li><li>支持Flex布局</li></ul><p class='hint'>💡 提示：view是最常用的布局容器</p>"
+              },
+              {
+                "id": "desc_image",
+                "type": "description",
+                "content": "<h4>🖼️ &lt;image&gt; 图片组件</h4><p><code>&lt;image&gt;</code> 用于显示图片，<code>src</code>属性指定图片路径。</p><ul><li><strong>src</strong>：图片资源地址</li><li>支持本地路径和网络图片</li><li>可以设置图片的缩放模式</li></ul><p class='hint'>💡 图片路径以<code>/</code>开头表示项目根目录</p>"
+              },
+              {
+                "id": "desc_view_close",
+                "type": "description",
+                "content": "<h4>📦 &lt;/view&gt; 结束标签</h4><p>结束标签标志着view容器的结束，与开始标签配对使用。</p><ul><li>必须与开始标签配对</li><li>包裹的内容显示在容器内部</li><li>缺少结束标签会导致错误</li></ul><p class='hint'>💡 确保标签正确闭合是良好的编码习惯</p>"
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0102",
+          "title": "完整页面结构",
+          "description": "学习更复杂的页面布局",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "display_header",
+                "type": "html-container",
+                "content": "<div style='padding: 15px; background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%); color: white; border-radius: 12px 12px 0 0; text-align: center;'><h3>🏠 页面头部</h3></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_header_open", "line_title", "line_header_close"]
+              },
+              {
+                "id": "display_content",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: #f5f5f5; border-left: 3px solid #667eea;'><h4 style='color: #667eea;'>📄 内容区域</h4><p style='color: #666;'>这里显示主要内容...</p></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_content_open", "line_content_text", "line_content_close"]
+              },
+              {
+                "id": "display_footer",
+                "type": "html-container",
+                "content": "<div style='padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 0 0 12px 12px; text-align: center;'><small>© 2024 小白学</small></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_footer_open", "line_footer_text", "line_footer_close"]
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "code_block_02",
+                "type": "code-block",
+                "language": "wxml",
+                "content": "<view class=\"header\">\n  <text>页面标题</text>\n</view>\n<view class=\"content\">\n  <text>主要内容区域</text>\n</view>\n<view class=\"footer\">\n  <text>页脚信息</text>\n</view>",
+                "codeLines": [
+                  {
+                    "id": "line_header_open",
+                    "displayBlockId": "display_header",
+                    "descriptionId": "desc_header"
+                  },
+                  {
+                    "id": "line_title",
+                    "displayBlockId": "display_header",
+                    "descriptionId": "desc_text"
+                  },
+                  {
+                    "id": "line_header_close",
+                    "displayBlockId": "display_header",
+                    "descriptionId": "desc_header"
+                  },
+                  {
+                    "id": "line_content_open",
+                    "displayBlockId": "display_content",
+                    "descriptionId": "desc_content"
+                  },
+                  {
+                    "id": "line_content_text",
+                    "displayBlockId": "display_content",
+                    "descriptionId": "desc_text"
+                  },
+                  {
+                    "id": "line_content_close",
+                    "displayBlockId": "display_content",
+                    "descriptionId": "desc_content"
+                  },
+                  {
+                    "id": "line_footer_open",
+                    "displayBlockId": "display_footer",
+                    "descriptionId": "desc_footer"
+                  },
+                  {
+                    "id": "line_footer_text",
+                    "displayBlockId": "display_footer",
+                    "descriptionId": "desc_text"
+                  },
+                  {
+                    "id": "line_footer_close",
+                    "displayBlockId": "display_footer",
+                    "descriptionId": "desc_footer"
+                  }
+                ]
+              },
+              {
+                "id": "desc_header",
+                "type": "description",
+                "content": "<h4>🏠 Header 头部区域</h4><p>页面头部通常包含：</p><ul><li>页面标题</li><li>导航按钮</li><li>状态信息</li></ul><p><code>class=\"header\"</code> 用于应用头部专属样式。</p>"
+              },
+              {
+                "id": "desc_content",
+                "type": "description",
+                "content": "<h4>📄 Content 内容区域</h4><p>内容区域是页面的主体部分：</p><ul><li>显示主要业务内容</li><li>通常使用flex布局</li><li>可滚动显示更多内容</li></ul>"
+              },
+              {
+                "id": "desc_footer",
+                "type": "description",
+                "content": "<h4>📍 Footer 页脚区域</h4><p>页脚区域通常包含：</p><ul><li>版权信息</li><li>底部导航</li><li>联系方式</li></ul>"
+              },
+              {
+                "id": "desc_text",
+                "type": "description",
+                "content": "<h4>📝 Text 文本组件</h4><p><code>&lt;text&gt;</code> 用于显示文本内容：</p><ul><li>支持文本选中和复制</li><li>支持多种文本样式</li><li>可嵌套使用</li></ul><p class='hint'>💡 文本内容应该放在text组件中</p>"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "bigStepId": "big_02",
+      "title": "事件绑定",
+      "description": "学习如何给组件绑定事件",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0201",
+          "title": "点击事件",
+          "description": "学习bindtap点击事件的使用",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "display_button",
+                "type": "html-container",
+                "content": "<div style='padding: 30px; text-align: center;'><button style='padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);'>👆 点击我</button><p style='margin-top: 15px; color: #666;'>点击按钮触发事件</p></div>",
+                "position": { "top": "0", "left": "0" },
+                "styles": {},
+                "associations": ["line_btn_open", "line_btn_text", "line_btn_close"]
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "code_block_03",
+                "type": "code-block",
+                "language": "wxml",
+                "content": "<view class=\"btn\" bindtap=\"handleClick\">\n  点击我\n</view>",
+                "codeLines": [
+                  {
+                    "id": "line_btn_open",
+                    "displayBlockId": "display_button",
+                    "descriptionId": "desc_bindtap"
+                  },
+                  {
+                    "id": "line_btn_text",
+                    "displayBlockId": "display_button",
+                    "descriptionId": "desc_btn_text"
+                  },
+                  {
+                    "id": "line_btn_close",
+                    "displayBlockId": "display_button",
+                    "descriptionId": "desc_btn_close"
+                  }
+                ]
+              },
+              {
+                "id": "desc_bindtap",
+                "type": "description",
+                "content": "<h4>👆 bindtap 点击事件</h4><p><code>bindtap=\"handleClick\"</code> 绑定点击事件：</p><ul><li><strong>bindtap</strong>：绑定点击事件的属性名</li><li><strong>handleClick</strong>：在JS中定义的处理函数</li></ul><p class='hint'>💡 点击时会触发handleClick函数</p>"
+              },
+              {
+                "id": "desc_btn_text",
+                "type": "description",
+                "content": "<h4>📝 按钮文字</h4><p>按钮显示的文字内容。</p><ul><li>可以是任意文本</li><li>支持动态绑定数据</li><li>点击区域包含文字和容器</li></ul>"
+              },
+              {
+                "id": "desc_btn_close",
+                "type": "description",
+                "content": "<h4>📦 结束标签</h4><p>view容器的结束标签，与开始标签配对。</p><p>整个view区域都可以响应点击事件。</p>"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
