@@ -1,0 +1,241 @@
+{
+  "exampleId": "ex_html_basic_001",
+  "metadata": {
+    "title": "HTML基础入门",
+    "description": "学习HTML的基本结构和常用标签",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": ["HTML", "基础", "入门"],
+    "author": "小白学团队",
+    "version": "1.0"
+  },
+  "bigSteps": [
+    {
+      "bigStepId": "big_01",
+      "title": "HTML文档结构",
+      "description": "了解HTML文档的基本结构",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0101",
+          "title": "认识HTML文档",
+          "description": "学习HTML文档的基本组成部分",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "block_display_01",
+                "type": "html-container",
+                "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>我的第一个网页</title>\n  </head>\n  <body>\n    <h1>Hello World!</h1>\n  </body>\n</html>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {
+                  "default": "demo-block",
+                  "highlight": "demo-block-highlight"
+                },
+                "associations": ["block_code_01", "block_desc_01"],
+                "actions": [
+                  {
+                    "event": "click",
+                    "action": "toggleHighlight",
+                    "targets": ["block_code_01"]
+                  }
+                ]
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "block_code_01",
+                "type": "code-block",
+                "language": "html",
+                "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>我的第一个网页</title>\n  </head>\n  <body>\n    <h1>Hello World!</h1>\n  </body>\n</html>",
+                "lineHighlights": [],
+                "associations": ["block_display_01", "block_desc_01"],
+                "actions": [
+                  {
+                    "event": "click",
+                    "action": "toggleHighlight",
+                    "targets": ["block_display_01"]
+                  }
+                ]
+              },
+              {
+                "id": "block_desc_01",
+                "type": "description",
+                "content": "<h4>HTML文档结构说明</h4><p>一个完整的HTML文档包含以下部分：</p><ul><li><strong>&lt;!DOCTYPE html&gt;</strong>：文档类型声明</li><li><strong>&lt;html&gt;</strong>：根元素</li><li><strong>&lt;head&gt;</strong>：头部信息</li><li><strong>&lt;body&gt;</strong>：主体内容</li></ul>",
+                "associations": ["block_display_01", "block_code_01"],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0102",
+          "title": "DOCTYPE声明",
+          "description": "理解文档类型声明的作用",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "block_display_02",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: #f0f0f0; border-radius: 8px;'><h3>文档类型声明</h3><p>告诉浏览器使用HTML5标准解析文档</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {
+                  "default": "",
+                  "highlight": ""
+                },
+                "associations": ["block_code_02"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "block_code_02",
+                "type": "code-block",
+                "language": "html",
+                "content": "<!DOCTYPE html>",
+                "lineHighlights": [1],
+                "associations": ["block_display_02"],
+                "actions": []
+              },
+              {
+                "id": "block_desc_02",
+                "type": "description",
+                "content": "<h4>为什么需要DOCTYPE？</h4><p>&lt;!DOCTYPE html&gt; 是HTML5的文档类型声明，它的作用是：</p><ul><li>告诉浏览器按照HTML5标准解析页面</li><li>避免浏览器进入怪异模式（Quirks Mode）</li><li>确保页面在不同浏览器中的一致性</li></ul><p class='hint'>💡 提示：这一行必须放在HTML文档的第一行</p>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0103",
+          "title": "HTML根元素",
+          "description": "学习html标签的作用",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "block_display_03",
+                "type": "html-container",
+                "content": "<div style='padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px;'><h3>HTML根元素</h3><p>所有内容都包含在&lt;html&gt;标签中</p></div>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["block_code_03"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "block_code_03",
+                "type": "code-block",
+                "language": "html",
+                "content": "<html>\n  <!-- 所有网页内容都在这里 -->\n</html>",
+                "lineHighlights": [1, 3],
+                "associations": ["block_display_03"],
+                "actions": []
+              },
+              {
+                "id": "block_desc_03",
+                "type": "description",
+                "content": "<h4>&lt;html&gt; 标签</h4><p>&lt;html&gt; 标签是HTML文档的根元素，它：</p><ul><li>包含整个HTML文档的内容</li><li>通常包含 lang 属性指定语言，如：&lt;html lang=\"zh-CN\"&gt;</li><li>必须包含 &lt;head&gt; 和 &lt;body&gt; 两个子元素</li></ul>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "bigStepId": "big_02",
+      "title": "常用HTML标签",
+      "description": "学习最常用的HTML标签",
+      "smallSteps": [
+        {
+          "smallStepId": "small_0201",
+          "title": "标题标签",
+          "description": "使用h1-h6创建标题",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "block_display_04",
+                "type": "html-container",
+                "content": "<h1>一级标题</h1><h2>二级标题</h2><h3>三级标题</h3><h4>四级标题</h4><h5>五级标题</h5><h6>六级标题</h6>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["block_code_04"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "block_code_04",
+                "type": "code-block",
+                "language": "html",
+                "content": "<h1>一级标题</h1>\n<h2>二级标题</h2>\n<h3>三级标题</h3>\n<h4>四级标题</h4>\n<h5>五级标题</h5>\n<h6>六级标题</h6>",
+                "lineHighlights": [],
+                "associations": ["block_display_04"],
+                "actions": []
+              },
+              {
+                "id": "block_desc_04",
+                "type": "description",
+                "content": "<h4>标题标签 &lt;h1&gt; - &lt;h6&gt;</h4><p>HTML提供了6级标题标签：</p><ul><li>&lt;h1&gt; - 最重要的标题（通常是页面主标题）</li><li>&lt;h2&gt; - 次级标题</li><li>&lt;h3&gt; 到 &lt;h6&gt; - 依次递减的标题层级</li></ul><p class='hint'>💡 提示：合理使用标题层级有助于SEO优化和页面结构化</p>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        },
+        {
+          "smallStepId": "small_0202",
+          "title": "段落和文本",
+          "description": "使用p标签创建段落",
+          "blocks": {
+            "leftArea": [
+              {
+                "id": "block_display_05",
+                "type": "html-container",
+                "content": "<p>这是第一个段落。段落标签会自动添加上下间距。</p><p>这是第二个段落。<strong>这是加粗文本</strong>，<em>这是斜体文本</em>。</p>",
+                "position": {
+                  "top": "0",
+                  "left": "0"
+                },
+                "styles": {},
+                "associations": ["block_code_05"],
+                "actions": []
+              }
+            ],
+            "rightArea": [
+              {
+                "id": "block_code_05",
+                "type": "code-block",
+                "language": "html",
+                "content": "<p>这是第一个段落。段落标签会自动添加上下间距。</p>\n<p>这是第二个段落。<strong>这是加粗文本</strong>，<em>这是斜体文本</em>。</p>",
+                "lineHighlights": [],
+                "associations": ["block_display_05"],
+                "actions": []
+              },
+              {
+                "id": "block_desc_05",
+                "type": "description",
+                "content": "<h4>段落和文本格式</h4><ul><li>&lt;p&gt; - 段落标签，用于包裹文本段落</li><li>&lt;strong&gt; - 加粗文本（表示重要内容）</li><li>&lt;em&gt; - 斜体文本（表示强调）</li><li>&lt;br&gt; - 换行标签</li></ul>",
+                "associations": [],
+                "actions": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
